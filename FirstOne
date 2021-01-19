@@ -33,12 +33,12 @@ response = requests.get(url)
 page = response.content
 soup = BeautifulSoup(page, 'html.parser')
 
-inthenews = soup.find('div', class_='rpa-container rpajs-articles')
-news = inthenews.find_all('h3', class_='rpa-article-card__title')
-branza = inthenews.find_all('li', class_='rpa-article-card__metadata-item')
-for m in news:
+artykuly = soup.find('div', class_='rpa-container rpajs-articles')
+tytuly = artykuly.find_all('h3', class_='rpa-article-card__title')
+branza = artykuly.find_all('li', class_='rpa-article-card__metadata-item')
+for m in tytuly:
     print(m.get_text())
 for m in branza:
     print(m.get_text())
-for link in inthenews.find_all('a'):
+for link in artykuly.find_all('a'):
     print(link.get('href'))
