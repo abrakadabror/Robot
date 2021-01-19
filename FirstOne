@@ -1,0 +1,44 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+url = 'https://rpa.hybrydoweit.pl/#articles'
+response = requests.get(url)
+
+
+page = response.content
+soup = BeautifulSoup(page,'html.parser')
+
+for artykuly in soup.find_all('div', class_='rpa-container rpajs-articles'):
+    tytuly = artykuly.find_all('h3', class_='rpa-article-card__title')
+    branza = artykuly.find_all('li', class_='rpa-article-card__metadata-item')
+    links = artykuly.find_all('a')
+    merged_list = list(zip(tytuly, branza, links))
+for el in merged_list:
+    print(f'{el[0]}, {el[1]}, {el[2]}')
+
+
+def my_function():
+    print('Niestey, ale nie udało mi sie stworzyć pliku xlsx')
+
+my_function()
+
+## second attempt
+
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://rpa.hybrydoweit.pl/#articles'
+response = requests.get(url)
+
+page = response.content
+soup = BeautifulSoup(page, 'html.parser')
+
+inthenews = soup.find('div', class_='rpa-container rpajs-articles')
+news = inthenews.find_all('h3', class_='rpa-article-card__title')
+branza = inthenews.find_all('li', class_='rpa-article-card__metadata-item')
+for m in news:
+    print(m.get_text())
+for m in branza:
+    print(m.get_text())
+for link in inthenews.find_all('a'):
+    print(link.get('href'))
