@@ -18,11 +18,11 @@ for el in merged_list:
 
 
 def my_function():
-    print('Niestey, ale nie udało mi sie stworzyć pliku xlsx')
+    print('Niestey, ale nie udało mi sie stworzyć poprawnego pliku xlsx')
 
 my_function()
 
-## second attempt
+## drugie podejscie ###
 
 import requests
 from bs4 import BeautifulSoup
